@@ -11,33 +11,17 @@ const Bookshelves = (props) => {
       </div>
       <div className="list-books-content">
         <div>
-          <div className="bookshelf">
-            <h2 className="bookshelf-title">Currently Reading</h2>
-            <RenderBooks
-              books={props.books}
-              shelf='currentlyReading'
-              changeBookshelf={props.changeBookshelf}
-              isInBookshelf={props.isInBookshelf}
-            />
+          {props.shelves.map(shelf => (
+            <div className="bookshelf" key={shelf.shelf}>
+              <h2 className="bookshelf-title">{shelf.title}</h2>
+              <RenderBooks
+                books={props.books}
+                shelf={shelf.shelf}
+                changeBookshelf={props.changeBookshelf}
+                isInBookshelf={props.isInBookshelf}
+              />
           </div>
-          <div className="bookshelf">
-            <h2 className="bookshelf-title">Want to Read</h2>
-            <RenderBooks
-              books={props.books}
-              shelf='wantToRead'
-              changeBookshelf={props.changeBookshelf}
-              isInBookshelf={props.isInBookshelf}
-            />
-          </div>
-          <div className="bookshelf">
-            <h2 className="bookshelf-title">Read</h2>
-            <RenderBooks
-              books={props.books}
-              shelf='read'
-              changeBookshelf={props.changeBookshelf}
-              isInBookshelf={props.isInBookshelf}
-            />
-          </div>
+          ))}
         </div>
       </div>
       <div className="open-search">

@@ -8,9 +8,22 @@ import './App.css'
 class BooksApp extends Component {
   state = {
     books: [],
-    showSearchPage: false,
     search: [],
-    empty: false
+    empty: false,
+    shelves: [
+      {
+        title: 'Currently Reading',
+        shelf: 'currentlyReading'
+      },
+      {
+        title: 'Want to Read',
+        shelf: 'wantToRead'
+      },
+      {
+        title: 'Read',
+        shelf: 'read'
+      }
+    ]
   }
 
   componentDidMount() {
@@ -52,7 +65,7 @@ class BooksApp extends Component {
   }
 
   render() {
-    const { books, search, empty } = this.state
+    const { books, search, empty, shelves } = this.state
     return (
       <div className="app">
         <Route exact path='/' render={() => (
@@ -60,6 +73,7 @@ class BooksApp extends Component {
             books={books}
             changeBookshelf={this.changeBookshelf}
             isInBookshelf={this.isInBookshelf}
+            shelves={shelves}
           />
         )}/>
         <Route exact path='/search' render={() => (
